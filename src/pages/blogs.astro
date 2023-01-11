@@ -6,7 +6,7 @@ import GeneralLayout from "../layout/GeneralLayout.astro";
 import BlogItem from "../components/BlogItem"
 
 const data = await fetch(
-    "https://www.saaralkaatru.com/dynamic/blogs.json"
+import.meta.env.PUBLIC_BLOG_URL+"dynamic/blogs.json"
 ).then((response) => response.json());
 
 ---
