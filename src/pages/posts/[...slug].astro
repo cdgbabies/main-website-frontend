@@ -5,7 +5,7 @@ import SectionLayout from "../../layout/SectionLayout.astro";
 
 export async function getStaticPaths() {
   const data = await fetch(
-    "https://www.saaralkaatru.com/dynamic/blogs.json"
+    "https://gt7jeo2xu2bdx4ozhdjodfngzu0uuldj.lambda-url.us-east-1.on.aws/"
 ).then((response) => response.json());
     return data.map(({ sk, title, description }) => {
       
