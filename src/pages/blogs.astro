@@ -1,13 +1,11 @@
-
 ---
 
-import Testimonials from "../components/Testimonials.astro";
 import GeneralLayout from "../layout/GeneralLayout.astro";
 import BlogItem from "../components/BlogItem"
 
-const blogUrl = import.meta.env.PUBLIC_BLOG_URL+"dynamic/blogs.json"
+const blogUrl = import.meta.env.PUBLIC_BLOG_URL
+console.log(blogUrl)
 const data = await fetch(blogUrl).then((response) => response.json());
-
 ---
 
   <GeneralLayout content={{ title: "Test", description: "Test" }}>
