@@ -1,0 +1,79 @@
+---
+import Head from "../components/ui/Head.astro";
+
+import Menu from "../components/ui/Menu.astro";
+
+export interface Props {
+  content: {
+    title: string;
+    description: string;
+  };
+}
+
+const {
+  content: { title, description },
+} = Astro.props;
+---
+
+<html lang="en" class="scroll-smooth md:scroll-auto">
+  <head>
+    <Head title={title} description={description} />
+   
+    <script>
+      // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      var themeToggleBtn = document.querySelectorAll("#theme-toggle");
+     
+      themeToggleBtn.forEach(x=>x.addEventListener("click", function () {
+        // toggle icons inside button
+       
+
+        // if set via local storage previously
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+
+          // if NOT set via local storage previously
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+    
+      }));
+    
+
+
+
+    
+   
+    </script>
+  </head>
+
+  <body
+    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+  >
+    <Menu />
+    <main class="bg-white dark:bg-slate-900">
+      <slot />
+    </main>
+  </body>
+</html>

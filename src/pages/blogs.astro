@@ -1,0 +1,26 @@
+
+---
+
+import Testimonials from "../components/Testimonials.astro";
+import GeneralLayout from "../layout/GeneralLayout.astro";
+import BlogItem from "../components/BlogItem"
+
+const data = await fetch(
+    "https://www.saaralkaatru.com/dynamic/blogs.json"
+).then((response) => response.json());
+
+---
+
+  <GeneralLayout content={{ title: "Test", description: "Test" }}>
+    <section class="text-slate-700 dark:text-slate-300 body-font overflow-hidden">
+     <BlogItem client:visible data={data}/>
+ </section>       
+         
+     
+  </GeneralLayout>
+
+<script>
+	//document.querySelector(".active").classList.remove("active");
+	//document.querySelector("#blogs").classList.add("text-blue-100");
+  document.querySelector("#blogs").classList.add("underline");
+</script>

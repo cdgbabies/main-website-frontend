@@ -1,0 +1,133 @@
+---
+
+import Testimonial from "../components/Testimonial";
+
+import LinkButton from "../components/ui/LinkButton.astro";
+
+import GeneralLayout from "../layout/GeneralLayout.astro";
+import SectionLayout from "../layout/SectionLayout.astro";
+import { AstroSeo } from '@astrolib/seo';
+const data = await fetch(
+    "https://www.saaralkaatru.com/dynamic/testimonials.json"
+).then((response) => response.json());
+
+---
+
+
+  <GeneralLayout content={{ title: "Test", description: "Test" }}>
+   
+      <section class="bg-white dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-max lg:py-8 lg:px-6  ">
+
+          <div
+            class="max-w-screen-xl  px-8 text-gray-500 sm:text-lg dark:text-gray-400 " 
+          >
+		  <div class="flex ">
+			<div class="m-auto">
+				<img src="/baby.ico" />
+			</div>
+		  </div>         
+           
+            
+
+			<div class="mb-4 font-light mt-6 text-lg text-slate-700 dark:text-slate-400 space-y-6">
+				<p >
+					This is a global WhatsApp group of IT professionals around the
+					world. The members of the group go through very harsh criticism
+					that is blunt and ruthless if they fail to meet the learning
+					schedule. We do enjoy good jokes and have fun in the group. In
+					order to be part of this group the above is mandatory and you
+					should not have an ego. Everyone is learning in the group!
+				  </p>
+				  <p >
+					This group is moderated by <a
+					  class="font-semibold"
+					  href="https://www.linkedin.com/in/joem75/">Joe M</a
+					> popularly known as JoeVirus amoung the group members. Joe's favorite
+					rant is "You are as good as your last movie. Keep your brags fresh."
+					Keep upskilling!
+				  </p>
+
+			</div>
+           
+          </div>
+		  
+		</div>
+          <div class="mt-6  flex justify-center space-x-4 text-sm ">
+			<div>
+			<LinkButton mainButton="Y" text="Join the Group" url="https://docs.google.com/spreadsheets/d/1SEjA7oxg4R555hFlRVmWx-zsnfbs70C3_5YBH0HM8pI/edit?usp=sharing"/>
+			</div>
+			<div>
+			<LinkButton mainButton="Y" text="Certification Challenge" url="https://docs.google.com/spreadsheets/d/1SEjA7oxg4R555hFlRVmWx-zsnfbs70C3_5YBH0HM8pI/edit?usp=sharing"/>
+		</div>
+          </div>
+       
+      </section>
+      <section class="bg-white mt-2 dark:bg-gray-900 text-gray-600 body-font overflow-hidden dark:text-slate-300">
+        <div
+          class="container px-5 py-8 mx-auto  max-w-screen-xl lg:py-8 lg:px-6"
+        >
+          <div class="flex flex-wrap -m-12 p-16">
+            <SectionLayout content={{title:"Proof of Concepts",width:"1"}}>
+				
+				<p class="mb-4 font-light ">
+					Nothing beats the hands-on exercise! Apart from certifications, our group members also actively involve in developing POCs.
+					</p>
+					<p class=" font-light">
+								Right from discovery phase to execution phase, the members working in POC try to follow the actual production grade process and best practices with suggestions from Joe.
+								
+				  </p>
+				 <div class="px-2 ">
+					<LinkButton  text="Current POCs" url="https://docs.google.com/spreadsheets/d/1SEjA7oxg4R555hFlRVmWx-zsnfbs70C3_5YBH0HM8pI/edit?usp=sharing"/>
+					
+				 </div>
+				</SectionLayout>
+
+				<SectionLayout content={{title:"Group Studies",width:"1"}}>
+					<p class="mb-4 font-light">
+						Learning is effective and fun when we do it in group. Babies who aim towards a certificate form a study group. Group studies foster an environment to network with people, discuss more ideas and a commitment to spend fixed hours daily for upskilling.
+					</p>
+					<p class=" font-light">
+				The only rule to join a study group is book the exam date prior.
+					  </p>
+					 <div class="px-2 max-w-screen-xl">
+						<LinkButton  text="Study Groups" url="https://docs.google.com/spreadsheets/d/1UXNAFyy0s4UJIpESJxkMyoB-GGH8dJVR66ax8-HbHNY/edit?usp=sharing"/>
+						
+					 </div>
+					</SectionLayout>           
+				
+				
+					<SectionLayout content={{title:"Webinars",width:"1"}}>
+						<p class="mb-4 font-light">
+							Gaining operational knowledge is hard unless someone operates in that environment. Joe along with many other industry professionals conduct Cloud Professional weekend sharing session.
+							</p>
+							<p class=" font-light">
+							 Apart from Technology related sessions, we also have regular meetings for LinkedIn profile renovation , Resume renovation, Mock interviews.
+						  </p>
+						 <div class="px-2 max-w-screen-xl">
+							<LinkButton  text="Watch" url="https://www.youtube.com/c/CloudandDevOpsBabies"/>
+							
+						 </div>
+						</SectionLayout>  
+						<SectionLayout content={{title:"Testimonials",width:"1"}}>
+							
+							<div class="flex flex-wrap -m-4">
+
+								<Testimonial client:visible testimonials={data}/>
+								 
+							  
+							  </div>
+						</SectionLayout>         
+           
+			
+		
+          </div>
+        </div>
+		
+      </section>
+    
+   
+  </GeneralLayout>
+
+
+

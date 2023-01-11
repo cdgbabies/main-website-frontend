@@ -1,0 +1,22 @@
+---
+export interface Props {
+  content: {
+    title: string;
+    width:string
+  };
+}
+
+const {
+  content: { title,width },
+} = Astro.props;
+---
+<div class={`md:w-${width} max-w-full` } >
+<div class="p-8 mb-10  flex flex-col items-start shadow-xl shadow-zinc-300 lg:mr-0.3 dark:shadow-gray-800">
+  <h2
+    class="mb-4 text-2xl tracking-tight font-bold text-gray-900  dark:text-sky-500"
+  >
+    {title}
+  </h2>
+  <slot />
+</div>
+</div>

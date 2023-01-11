@@ -1,0 +1,36 @@
+---
+import MarkDownReader from "../../components/MardownReader";
+import GeneralLayout from "../../layout/GeneralLayout.astro";
+import SectionLayout from "../../layout/SectionLayout.astro";
+
+export async function getStaticPaths() {
+  const data = await fetch(
+    "https://www.saaralkaatru.com/dynamic/blogs.json"
+).then((response) => response.json());
+    return data.map(({ sk, title, description }) => {
+      
+      return {
+        params: {slug:sk.substring(0,sk.indexOf("."))},
+        props: { title, description,sk },
+      };
+    });
+  }
+  
+  const { title, description,sk } = Astro.props;
+  console.log(title, description);
+  
+
+const section = await fetch("https://www.saaralkaatru.com/"+sk).then((response) => response.body);
+
+let markddownText = await new Response(section).text();
+
+---
+
+<GeneralLayout content={{ title: "Test", description: "Test" }}>
+<SectionLayout content={{title:"Shiksha",width:"1"}}>
+
+<MarkDownReader content={markddownText} client:visible/>
+
+</SectionLayout>
+</GeneralLayout>
+
