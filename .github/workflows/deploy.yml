@@ -23,8 +23,8 @@ jobs:
       - name: 'Create env file'
         run: |
           touch .env
-          echo PUBLIC_BLOG_URL=${{ env.PUBLIC_BLOG_URL }} >> .env
-          echo PUBLIC_INDIVIDUAL_BLOG_URL=${{ env.PUBLIC_INDIVIDUAL_BLOG_URL }} >> .env
+          echo PUBLIC_BLOG_URL=${{ vars.PUBLIC_BLOG_URL }} >> .env
+          echo PUBLIC_INDIVIDUAL_BLOG_URL=${{ vars.PUBLIC_INDIVIDUAL_BLOG_URL }} >> .env
           cat .env
       - name: Build application
         run: npm run build
