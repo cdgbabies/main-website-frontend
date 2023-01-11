@@ -5,9 +5,8 @@ import Testimonials from "../components/Testimonials.astro";
 import GeneralLayout from "../layout/GeneralLayout.astro";
 import BlogItem from "../components/BlogItem"
 
-const data = await fetch(
-import.meta.env.PUBLIC_BLOG_URL+"dynamic/blogs.json"
-).then((response) => response.json());
+const blogUrl = import.meta.env.PUBLIC_BLOG_URL+"dynamic/blogs.json"
+const data = await fetch(blogUrl).then((response) => response.json());
 
 ---
 
