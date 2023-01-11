@@ -26,9 +26,4 @@ jobs:
           echo PUBLIC_BLOG_URL=${{ vars.PUBLIC_BLOG_URL }} >> .env
           echo PUBLIC_INDIVIDUAL_BLOG_URL=${{ vars.PUBLIC_INDIVIDUAL_BLOG_URL }} >> .env
           cat .env
-      - name: Build application
-        run: npm run build
-      - name: Deploy to S3
-        run: aws s3 sync ./dist/ s3://${{ secrets.BUCKET_ID }}
-      - name: Create CloudFront invalidation
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
+   
