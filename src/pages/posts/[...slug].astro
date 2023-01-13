@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   }
   
   const { title, description,sk } = Astro.props;
-  console.log(title, description);
+  
   
 
 const section = await fetch(import.meta.env.PUBLIC_INDIVIDUAL_BLOG_URL+sk).then((response) => response.body);
@@ -26,8 +26,8 @@ let markddownText = await new Response(section).text();
 
 ---
 
-<GeneralLayout content={{ title: "Test", description: "Test" }}>
-<SectionLayout content={{title:"Shiksha",width:"1"}}>
+<GeneralLayout content={{ title: "Cloud&Devops Babies", description: "Test" }}>
+<SectionLayout content={{title:title,width:"1"}}>
 
 <MarkDownReader content={markddownText} client:visible/>
 
