@@ -3,21 +3,21 @@
 import GeneralLayout from "../layout/GeneralLayout.astro";
 import BlogItem from "../components/BlogItem"
 
-const blogUrl = import.meta.env.PUBLIC_BLOG_URL
-console.log(blogUrl)
-const data = await fetch(blogUrl).then((response) => response.json());
+const blogUrl = import.meta.env.PUBLIC_MAIN_SITE_URL+"dynamic/blogs.json"
+
+const data = await fetch(blogUrl).then((response) => response.json()).catch((error) =>console.log("No Blogs found"));
 ---
 
-  <GeneralLayout content={{ title: "Test", description: "Test" }}>
-    <section class="text-slate-700 dark:text-slate-300 body-font overflow-hidden">
-     <BlogItem client:visible data={data}/>
+  <GeneralLayout content={{ title: "Cloud&Devops Babies", description: "Blogs" }}>
+    <section class="text-slate-700 dark:text-slate-300 h-screen body-font overflow-hidden">
+      <div class="container px-5 py-14 mx-auto ">
+        <div class="flex flex-wrap -m-4">
+   {data && data.constructor === Array &&  <BlogItem client:visible data={data}/>}
+     </div>
+     </div>
  </section>       
          
      
   </GeneralLayout>
 
-<script>
-	//document.querySelector(".active").classList.remove("active");
-	//document.querySelector("#blogs").classList.add("text-blue-100");
-  document.querySelector("#blogs").classList.add("underline");
-</script>
+

@@ -1,25 +1,35 @@
+---
+
+
+const urls=[
+  {
+  id:"home",
+  path:"/",
+  label:"Home"
+},{
+  id:"blogs",
+  path:"/blogs",
+  label:"Blogs"
+},{
+  id:"certificationpath",
+  path:"/certificationpath",
+  label:"Certification Path"
+}
+]
+---
 <ul class="navbar-nav  md:flex items-center ml-auto font-semibold">
+  {
+    urls.map(url =>
     <li class="nav-item p-2 content-center">
       <a
-        class="nav-link hover:text-blue-600 dark:hover:text-gray-200 focus:text-blue-200 p-0"
-        href="/"
-        id="home">Home</a
-      >
+        class={`nav-link hover:text-blue-600 dark:hover:text-gray-200 focus:text-blue-200 p-0 ${Astro.url.pathname===url.path?'underline font-extrabold':''}`}
+        href={url.path}
+        id={url.id}>{url.label}</a>
     </li>
-    <li class="nav-item p-2">
-      <a
-        class="nav-link hover:text-gray-500 focus:text-slate-700 p-0"
-        href="/blogs"
-        id="blogs">Blogs</a
-      >
-    </li>
-    <li class="nav-item p-2">
-      <a
-        class="nav-link hover:text-gray-500 focus:text-slate-700 p-0"
-        href="#"
-        id="roadMap">Certification RoadMap</a
-      >
-    </li>
+
+    )
+  }
+    
   </ul>
   
  

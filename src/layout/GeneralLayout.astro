@@ -18,8 +18,38 @@ const {
 <html lang="en" class="scroll-smooth md:scroll-auto">
   <head>
     <Head title={title} description={description} />
-   
+
     <script>
+      function setWithExpiry(key: string, ttl: number) {
+        const now = new Date();
+        const item = {
+          expiry: now.getTime() + ttl,
+        };
+
+        fetch(import.meta.env.PUBLIC_VISITOR_LOG_URL);
+        localStorage.setItem(key, JSON.stringify(item));
+      }
+
+      function getWithExpiry(key: string) {
+        const itemStr = localStorage.getItem(key);
+       
+        // if the item doesn't exist, return null
+        if (!itemStr) {
+          return null;
+        }
+
+        const item = JSON.parse(itemStr);
+        const now = new Date();
+
+        // compare the expiry time of the item with the current time
+        if (now.getTime() > item.expiry) {
+          // If the item is expired, delete the item from storage
+          // and return null
+          localStorage.removeItem(key);
+          return null;
+        }
+        return item;
+      }
       // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
       if (
         localStorage.getItem("color-theme") === "dark" ||
@@ -32,47 +62,45 @@ const {
       }
 
       var themeToggleBtn = document.querySelectorAll("#theme-toggle");
-     
-      themeToggleBtn.forEach(x=>x.addEventListener("click", function () {
-        // toggle icons inside button
-       
 
-        // if set via local storage previously
-        if (localStorage.getItem("color-theme")) {
-          if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
+      themeToggleBtn.forEach((x) =>
+        x.addEventListener("click", function () {
+          // toggle icons inside button
+
+          // if set via local storage previously
+          if (localStorage.getItem("color-theme")) {
+            if (localStorage.getItem("color-theme") === "light") {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("color-theme", "dark");
+            } else {
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("color-theme", "light");
+            }
+
+            // if NOT set via local storage previously
           } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
+            if (document.documentElement.classList.contains("dark")) {
+              document.documentElement.classList.remove("dark");
+              localStorage.setItem("color-theme", "light");
+            } else {
+              document.documentElement.classList.add("dark");
+              localStorage.setItem("color-theme", "dark");
+            }
           }
-
-          // if NOT set via local storage previously
-        } else {
-          if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-          } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-          }
-        }
-    
-      }));
-    
-
-
-
-    
-   
+        })
+      );
+      const visitorLog = getWithExpiry("visitorLog");
+      if (visitorLog === null) {
+        setWithExpiry("visitorLog", 900000);
+      }
     </script>
   </head>
 
   <body
-    class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900"
+    class="antialiased text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800"
   >
     <Menu />
-    <main class="bg-white dark:bg-slate-900">
+    <main class="dark:bg-slate-900 tw-h-full">
       <slot />
     </main>
   </body>

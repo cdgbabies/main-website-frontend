@@ -1,7 +1,9 @@
 import React,{useEffect,useState} from "react";
 
 
-const TestimonialItem = (props)=>(
+const TestimonialItem = (props)=>( 
+  
+  
 
     <div key={props.id} className="space-y-8 lg:mb-0 mb-6 p-4">
     <div className="h-full  bg-slate-100 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5">
@@ -28,6 +30,9 @@ const Testimonial = ({testimonials})=>{
   const showModal =()=>{
     
   }
+  
+  //Setting ttl to 15 minutes (15*60*1000)
+ 
     const [showMore,setShowMore]=useState(false);
     const toggleShowMore = ()=>{
    
@@ -38,7 +43,7 @@ const Testimonial = ({testimonials})=>{
    
     return  <section  className="relative max-w-7xl mx-auto px-4 focus:outline-none sm:px-3 md:px-5">
         <div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden">
-    {displayedTestimonials && displayedTestimonials.map(item=><TestimonialItem key={item.id} id={item.id} testimonial={item.testimonial} author={item.author} designation={item.designation}/>)}
+    {displayedTestimonials && displayedTestimonials.map(item=><TestimonialItem key={item.sk} id={item.sk} testimonial={item.testimonial} author={item.author} designation={item.designation}/>)}
     </div>
     <div className="inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-white pt-4 pb-8 pointer-events-none dark:from-slate-900 relative mt-6  space-x-4 text-sm">
       <div>
@@ -72,7 +77,7 @@ const Testimonial = ({testimonials})=>{
                 </p>
             </div>
            
-            <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <div className="flex items-center p-6 space-x-2 ">
                 <button data-modal-toggle="defaultModal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
                 <button data-modal-toggle="defaultModal" type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
             </div>

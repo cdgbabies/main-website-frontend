@@ -20,7 +20,7 @@ export async function getStaticPaths() {
   
   
 
-const section = await fetch(import.meta.env.PUBLIC_INDIVIDUAL_BLOG_URL+sk).then((response) => response.body);
+const section = await fetch(import.meta.env.PUBLIC_MAIN_SITE_URL+sk).then((response) => response.body);
 
 let markddownText = await new Response(section).text();
 

@@ -1,31 +1,26 @@
 import React from 'react';
 
 const BlogItem =({data})=>{
-return  <div className="container px-5 py-24 mx-auto">
+return  < >
 {data.map(blog=>{
-  return <div className="-my-8 divide-y-2 divide-gray-700">
-            <div className="py-8 flex flex-wrap md:flex-nowrap">
-              <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                <span className="font-semibold title-font text-gray-700 dark:text-slate-300">{blog.title}</span>
-                <span className="mt-1 text-gray-500 text-sm dark:text-slate-400">{blog.title}</span>
-              </div>
-              <div className="md:flex-grow">
-               
-                <p className="leading-relaxed">{blog.description}</p>
-                <a className="text-indigo-500 inline-flex items-center mt-4" href={`/posts/${blog.sk.substring(0,blog.sk.indexOf("."))}`}>Learn More
-                  <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-         
-         
-        </div>
+    
+  return <div key={blog.sk} className="p-4 max-w-full ">
+  <div className="h-full bg-gray-200 dark:bg-slate-700 bg-opacity-75 px-8 pt-8 pb-12 rounded-lg overflow-hidden text-left relative">
+    
+    <h1 className="title-font sm:text-2xl text-xl font-medium  mb-3">{blog.title}</h1>
+    <p className="leading-relaxed mb-3">{blog.description}</p>
+    <a className="text-indigo-500 dark:text-indigo-100 inline-flex items-center" href={`/posts/${blog.sk.substring(0,blog.sk.indexOf("."))}`}>Learn More
+      <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor"  >
+        <path d="M5 12h14"></path>
+        <path d="M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  
+  </div>
+</div>
 
 })}
- </div>
+ </>
 }
 
 export default BlogItem;
