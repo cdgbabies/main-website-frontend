@@ -19,7 +19,8 @@ module.exports = {
 	},
 	plugins: [
 		require('./node_modules/tw-elements/dist/plugin'),
-		require('flowbite/plugin')
+		require('flowbite/plugin'),
+		require('@tailwindcss/typography'),
 	
 	  ]
 }

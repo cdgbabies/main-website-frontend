@@ -17,6 +17,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume:  ${{ secrets.WORKFLOW_ROLE_ARN }}
           aws-region: us-east-1
       - name: Install modules
         run: npm ci
@@ -24,7 +25,8 @@ jobs:
         run: |
           touch .env
           echo PUBLIC_BLOG_URL=${{ vars.PUBLIC_BLOG_URL }} >> .env
-          echo PUBLIC_INDIVIDUAL_BLOG_URL=${{ vars.PUBLIC_INDIVIDUAL_BLOG_URL }} >> .env
+          echo PUBLIC_MAIN_SITE_URL=${{ vars.PUBLIC_MAIN_SITE_URL }} >> .env
+          echo PUBLIC_VISITOR_LOG_URL=${{ vars.PUBLIC_VISITOR_LOG_URL }} >> .env
           cat .env
       - name: Build application
         run: npm run build

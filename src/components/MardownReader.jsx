@@ -6,7 +6,7 @@ export default function MarkDownReader(props){
 
 
   return(
-    <article className="prose lg:prose-xl w-5/6 overflow-x-hidden overflow-y-auto  space-y-6 p-4	 ">
+    <article className="max-w-none w-5/6 prose lg:prose-base overflow-x-hidden overflow-y-auto   dark:prose-invert prose-ul:list-inside prose-ol:list-inside  ">
     
    <ReactMarkdown>
 
