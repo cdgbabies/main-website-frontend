@@ -49,9 +49,7 @@ const Testimonial = ({testimonials})=>{
       <div>
         <button onClick={toggleShowMore} className="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto">{showMore?"Show Less...":"Show More..."}</button>
         </div>
-        <div>
-        <button className="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto" data-modal-toggle="defaultModal">Add Testimonial</button>
-        </div>
+       
         </div>
         <div id="defaultModal" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
     <div className="relative w-full h-full max-w-2xl md:h-auto">
