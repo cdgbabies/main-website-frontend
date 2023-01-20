@@ -1,12 +1,12 @@
 import React,{useEffect,useState} from "react";
-
+import { useForm } from "react-hook-form";
 
 const TestimonialItem = (props)=>( 
   
   
 
     <div key={props.id} className="space-y-8 lg:mb-0 mb-6 p-4">
-    <div className="h-full  bg-slate-100 rounded-lg p-6 dark:bg-slate-800 dark:highlight-white/5">
+    <div className="h-full  bg-slate-200 rounded-lg p-6 dark:bg-slate-900 dark:highlight-white/5">
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="block w-5 h-5 text-gray-400 mb-4" viewBox="0 0 975.036 975.036">
         <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
       </svg>
@@ -24,12 +24,28 @@ const TestimonialItem = (props)=>(
     </div>
   </div>
 )
+async function addTestimonial(data){
+ 
+  const url =import.meta.env.PUBLIC_ADD_TESTIMONIAL_URL;
+  console.log(data);
+  await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  
+
+
+ 
+ 
+}
 
 const Testimonial = ({testimonials})=>{
- 
-  const showModal =()=>{
-    
-  }
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   
   //Setting ttl to 15 minutes (15*60*1000)
  
@@ -49,7 +65,9 @@ const Testimonial = ({testimonials})=>{
       <div>
         <button onClick={toggleShowMore} className="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto">{showMore?"Show Less...":"Show More..."}</button>
         </div>
-       
+        <div>
+        <button className="relative bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 text-sm text-white font-semibold h-12 px-6 rounded-lg flex items-center dark:bg-slate-700 dark:hover:bg-slate-600 pointer-events-auto" data-modal-toggle="defaultModal">Add Testimonial</button>
+        </div>
         </div>
         <div id="defaultModal" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
     <div className="relative w-full h-full max-w-2xl md:h-auto">
@@ -65,23 +83,38 @@ const Testimonial = ({testimonials})=>{
                     <span className="sr-only">Close modal</span>
                 </button>
             </div>
-        
-            <div className="p-6 space-y-6">
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                </p>
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                </p>
+            <form onSubmit={handleSubmit(addTestimonial)}>
+            <div className="p-4 space-y-4">
+            <label className="block text-gray-700 text-sm font-bold  float-left dark:text-white">
+            Author
+          </label>
+          <input
+            {...register("author")}
+            className="shadow appearance-none border rounded w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="author"
+            type="text"
+            placeholder="Author"
+          />
+              <label className="block text-gray-700 text-sm font-bold mb-2 float-left dark:text-white">
+            Testimonial
+          </label>
+          <textarea
+           {...register("testimonial")}
+            className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            id="testimonial"
+            rows="4"
+          />
             </div>
            
             <div className="flex items-center p-6 space-x-2 ">
-                <button data-modal-toggle="defaultModal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                <button  data-modal-toggle="defaultModal" type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
                 <button data-modal-toggle="defaultModal" type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
     </section>
+
 }
 export default Testimonial;

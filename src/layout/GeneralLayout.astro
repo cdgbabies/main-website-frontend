@@ -1,55 +1,59 @@
 ---
-import Head from "../components/ui/Head.astro";
-
 import Menu from "../components/ui/Menu.astro";
-
+import { SEO } from "astro-seo";
 export interface Props {
   content: {
     title: string;
     description: string;
+    type: string;
   };
 }
 
 const {
-  content: { title, description },
+  content: { title, description, type },
 } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth md:scroll-auto">
   <head>
-    <Head title={title} description={description} />
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/baby.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-5145D78D4Q"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
+      gtag("config", "G-5145D78D4Q");
+    </script>
+    
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: type,
+          image: "https://cdg.saaralkaatru.com/baby.jpg",
+          
+        },
+        image:{
+          alt:"CloudAndDevOpsBabies"
+        }
+        
+      }}
+     
+    />
     <script>
-      function setWithExpiry(key: string, ttl: number) {
-        const now = new Date();
-        const item = {
-          expiry: now.getTime() + ttl,
-        };
-
-       // fetch(import.meta.env.PUBLIC_VISITOR_LOG_URL);
-        localStorage.setItem(key, JSON.stringify(item));
-      }
-
-      function getWithExpiry(key: string) {
-        const itemStr = localStorage.getItem(key);
-       
-        // if the item doesn't exist, return null
-        if (!itemStr) {
-          return null;
-        }
-
-        const item = JSON.parse(itemStr);
-        const now = new Date();
-
-        // compare the expiry time of the item with the current time
-        if (now.getTime() > item.expiry) {
-          // If the item is expired, delete the item from storage
-          // and return null
-          localStorage.removeItem(key);
-          return null;
-        }
-        return item;
-      }
       // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
       if (
         localStorage.getItem("color-theme") === "dark" ||
@@ -89,11 +93,10 @@ const {
           }
         })
       );
-      const visitorLog = getWithExpiry("visitorLog");
-      if (visitorLog === null) {
-        setWithExpiry("visitorLog", 900000);
-      }
     </script>
+    <script src="../../node_modules/flowbite/dist/flowbite.js"></script>
+    <script src="../../node_modules/tw-elements/dist/js/index.min.js"></script>
+    
   </head>
 
   <body
