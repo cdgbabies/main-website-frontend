@@ -21,15 +21,24 @@ jobs:
           role-to-assume:  ${{ secrets.WORKFLOW_ROLE_ARN }}
           role-session-name: samplerolesession
           aws-region: us-east-1
-      - name: Install modules
-        run: npm ci
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+      
       - name: 'Create env file'
         run: |
           touch .env
           echo PUBLIC_BLOG_URL=${{ vars.PUBLIC_BLOG_URL }} >> .env
           echo PUBLIC_MAIN_SITE_URL=${{ vars.PUBLIC_MAIN_SITE_URL }} >> .env
           echo PUBLIC_VISITOR_LOG_URL=${{ vars.PUBLIC_VISITOR_LOG_URL }} >> .env
-          cat .env
+        
       - name: Build application
         run: npm run build
       - name: Deploy to S3
