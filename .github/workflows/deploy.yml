@@ -40,6 +40,7 @@ jobs:
           echo PUBLIC_BLOG_URL=${{ vars.PUBLIC_BLOG_URL }} >> .env
           echo PUBLIC_MAIN_SITE_URL=${{ vars.PUBLIC_MAIN_SITE_URL }} >> .env
           echo PUBLIC_VISITOR_LOG_URL=${{ vars.PUBLIC_VISITOR_LOG_URL }} >> .env
+          echo PUBLIC_ADD_TESTIMONIAL_URL=${{ vars.PUBLIC_ADD_TESTIMONIAL_URL }} >> .env
           
         
       - name: Build application
