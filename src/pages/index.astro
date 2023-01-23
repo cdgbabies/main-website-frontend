@@ -6,13 +6,10 @@ import LinkButton from "../components/ui/LinkButton.astro";
 import GeneralLayout from "../layout/GeneralLayout.astro";
 import SectionLayout from "../layout/SectionLayout.astro";
 
-const data = await fetch(
-  import.meta.env.PUBLIC_MAIN_SITE_URL + "dynamic/testimonials.json"
-)
-  .then((response) => response.json())
-  .catch((error) => console.log("Not able to load testimonials"));
+
 
 ---
+
 
 <GeneralLayout
   content={{ title: "CloudAndDevOps Babies", description: "This is the official website of Cloud&DevOps Babies group moderated by Manoj Joseph", type: "website"}}
@@ -126,15 +123,14 @@ const data = await fetch(
             />
           </div>
         </SectionLayout>
-        {
-          data && (
+      
             <SectionLayout content={{ title: "Testimonials", width: "1" }}>
               <div class="flex flex-wrap -m-4">
-                <Testimonial client:visible testimonials={data} />
+                <Testimonial client:load  />
               </div>
             </SectionLayout>
-          )
-        }
+          
+        
       </div>
     </div>
   </section>
