@@ -5,19 +5,14 @@ import LinkButton from "../components/ui/LinkButton.astro";
 
 import GeneralLayout from "../layout/GeneralLayout.astro";
 import SectionLayout from "../layout/SectionLayout.astro";
-import { getCollection } from "astro:content";
-import Webinars from "../components/Webinars.astro";
+
 
 
 ---
 
+
 <GeneralLayout
-  content={{
-    title: "CloudAndDevOps Babies",
-    description:
-      "This is the official website of Cloud&DevOps Babies group moderated by Manoj Joseph",
-    type: "website",
-  }}
+  content={{ title: "CloudAndDevOps Babies", description: "This is the official website of Cloud&DevOps Babies group moderated by Manoj Joseph", type: "website"}}
 >
   <section class="">
     <div class="py-8 px-4 mx-auto max-w-max lg:py-8 lg:px-6">
@@ -31,7 +26,7 @@ import Webinars from "../components/Webinars.astro";
         </div>
 
         <div
-          class="mb-4 font-light mt-6 text-lg text-slate-900 dark:text-slate-200 space-y-6"
+          class="mb-4 font-light mt-6 text-lg text-slate-700 dark:text-slate-200 space-y-6"
         >
           <p>
             This is a global WhatsApp group of IT professionals around the
@@ -70,16 +65,16 @@ import Webinars from "../components/Webinars.astro";
     </div>
   </section>
   <section
-    class="mt-2 text-slate-900 body-font overflow-hidden dark:text-slate-300"
+    class="mt-2 text-gray-600 body-font overflow-hidden dark:text-slate-300"
   >
     <div class="container px-5 py-8 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
       <div class="flex flex-wrap -m-12 p-16">
         <SectionLayout content={{ title: "Proof of Concepts", width: "1" }}>
-          <p class="mb-4 font-medium">
+          <p class="mb-4 font-light">
             Nothing beats the hands-on exercise! Apart from certifications, our
             group members also actively involve in developing POCs.
           </p>
-          <p class="font-medium">
+          <p class="font-light">
             Right from discovery phase to execution phase, the members working
             in POC try to follow the actual production grade process and best
             practices with suggestions from Joe.
@@ -93,13 +88,13 @@ import Webinars from "../components/Webinars.astro";
         </SectionLayout>
 
         <SectionLayout content={{ title: "Group Studies", width: "1" }}>
-          <p class="mb-4 font-medium">
+          <p class="mb-4 font-light">
             Learning is effective and fun when we do it in group. Babies who aim
             towards a certificate form a study group. Group studies foster an
             environment to network with people, discuss more ideas and a
             commitment to spend fixed hours daily for upskilling.
           </p>
-          <p class="font-medium">
+          <p class="font-light">
             The only rule to join a study group is book the exam date prior.
           </p>
           <div class="px-2 max-w-screen-xl">
@@ -111,18 +106,31 @@ import Webinars from "../components/Webinars.astro";
         </SectionLayout>
 
         <SectionLayout content={{ title: "Webinars", width: "1" }}>
-         
-         <Webinars/>
-
-
+          <p class="mb-4 font-light">
+            Gaining operational knowledge is hard unless someone operates in
+            that environment. Joe along with many other industry professionals
+            conduct Cloud Professional weekend sharing session.
+          </p>
+          <p class="font-light">
+            Apart from Technology related sessions, we also have regular
+            meetings for LinkedIn profile renovation , Resume renovation, Mock
+            interviews.
+          </p>
+          <div class="px-2 max-w-screen-xl">
+            <LinkButton
+              text="Watch"
+              url="https://www.youtube.com/c/CloudandDevOpsBabies"
+            />
+          </div>
         </SectionLayout>
-
-          <SectionLayout content={{ title: "Testimonials", width: "1" }}>
-            <div class="flex flex-wrap -m-4">
-              <Testimonial client:load />
-            </div>
-          </SectionLayout>
-       
+      
+            <SectionLayout content={{ title: "Testimonials", width: "1" }}>
+              <div class="flex flex-wrap -m-4">
+                <Testimonial client:load  />
+              </div>
+            </SectionLayout>
+          
+        
       </div>
     </div>
   </section>
