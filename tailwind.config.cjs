@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: 'class',
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', './node_modules/tw-elements/dist/js/**/*.js'],
+	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', './node_modules/tw-elements/dist/js/**/*.js', './node_modules/flowbite/**/*.js'],
 	theme: {
 		extend: {},
 		listStyleType: {
@@ -12,6 +12,7 @@ module.exports = {
 			roman: 'upper-roman',
 		  }
 	},
+	
 	variants: {
 		extend: {
 		  textColor: ['active'],
@@ -21,6 +22,8 @@ module.exports = {
 		require('./node_modules/tw-elements/dist/plugin'),
 		require('flowbite/plugin'),
 		require('@tailwindcss/typography'),
+		
+		
 	
 	  ]
 }

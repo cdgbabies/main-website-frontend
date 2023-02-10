@@ -4,6 +4,7 @@ import GeneralLayout from "../../layout/GeneralLayout.astro";
 import SectionLayout from "../../layout/SectionLayout.astro";
 
 export async function getStaticPaths() {
+  console.log("getStaticPaths called");
   const data = await fetch(
   import.meta.env.PUBLIC_BLOG_URL
 ).then((response) => response.json());
