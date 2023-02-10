@@ -29,7 +29,8 @@
     "@astrojs/mdx": "^0.14.0",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^3.0.1",
-   
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "zod": "^3.20.2"
   }
 }

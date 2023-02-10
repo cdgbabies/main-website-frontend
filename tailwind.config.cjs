@@ -18,12 +18,15 @@ module.exports = {
 		  textColor: ['active'],
 		}
 	},
+	corePlugins: {
+		aspectRatio: false,
+	  },
 	plugins: [
 		require('./node_modules/tw-elements/dist/plugin'),
 		require('flowbite/plugin'),
 		require('@tailwindcss/typography'),
-		
-		
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/aspect-ratio'),
 	
 	  ]
 }

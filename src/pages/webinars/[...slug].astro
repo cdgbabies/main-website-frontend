@@ -24,17 +24,10 @@ const { Content } = await render()
 
 <GeneralLayout content={{ title: data.title, description: "Blogs related to Cloud&DevOps",type:"article" }}>
   <SectionLayout content={{title:data.title,width:"1"}}>
-  <div class=" flex items-center justify-center m-auto  overflow-y-hidden sm:h-screen lg:h-[70vh] w-4/5">
-    <iframe
-      src={`https://www.youtube.com/embed/${id.replace('.mdx','')}`}
-      title="YouTube video player"
-      class="h-full sm:w-full "
-    
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
-  </div>
 
+  <div class="aspect-w-1 aspect-h-1 lg:aspect-w-16 lg:aspect-h-9">
+    <iframe src={`https://www.youtube.com/embed/${id.replace('.mdx','')}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
   <div class="prose prose-xl mt-5 max-w-none w-5/6 dark:text-slate-200 ">
     <Content />
   </div>
