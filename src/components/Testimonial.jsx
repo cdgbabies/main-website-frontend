@@ -166,6 +166,7 @@ const Testimonial = (props) => {
   //Setting ttl to 15 minutes (15*60*1000)
   const [testimonials, setTestimonials] = useState(null);
   useEffect(() => {
+   
     async function getTestimonials() {
       const data = await fetch(
         import.meta.env.PUBLIC_MAIN_SITE_URL + "dynamic/testimonials.json"
@@ -179,7 +180,7 @@ const Testimonial = (props) => {
     getTestimonials();
   }, []);
 
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(true);
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
@@ -196,21 +197,8 @@ const Testimonial = (props) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden">
-        {dataLoaded &&
-          displayedTestimonials &&
-          displayedTestimonials.map((item) => (
-            <TestimonialItem
-              key={item.sk}
-              id={item.sk}
-              testimonial={item.testimonial}
-              author={item.author}
-              designation={item.designation}
-            />
-          ))}
-      </div>
       <section className="relative max-w-7xl mx-auto px-4 focus:outline-none sm:px-3 md:px-5">
-      <div className="inset-x-0 bottom-0 flex justify-center  from-white pt-4 pb-8 pointer-events-none  relative mt-6  space-x-4 text-sm">
+      <div className="inset-x-0 bottom-0 flex justify-center  from-white pt-4  pointer-events-none  relative   space-x-4 text-sm">
         <div>
           <button
             onClick={toggleShowMore}
@@ -229,6 +217,21 @@ const Testimonial = (props) => {
         </div>
       </div>
       </section>
+      <div className="grid grid-cols-1 gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden">
+        
+        {dataLoaded &&
+          displayedTestimonials &&
+          displayedTestimonials.map((item) => (
+            <TestimonialItem
+              key={item.sk}
+              id={item.sk}
+              testimonial={item.testimonial}
+              author={item.author}
+              designation={item.designation}
+            />
+          ))}
+      </div>
+    
       <AddTestimonialModal />
     </>
   );
